@@ -39,31 +39,46 @@
 //   );
 // }
 
-// ?
+// * stopPropagation()
 
-function Button({ onSmach, children }) {
+// function Button({ onSmach, children }) {
+//   return (
+//     <button
+//       onClick={(e) => {
+//         e.stopPropagation();
+//         onSmach();
+//       }}
+//     >
+//       {children}
+//     </button>
+//   );
+// }
+
+// export default function Toolbar() {
+//   return (
+//     <div
+//       className="Toolbar"
+//       onClick={() => {
+//         console.log("You clicked on the toolbar!");
+//       }}
+//     >
+//       <Button onSmach={() => console.log("Playing!")}>Play Movie</Button>
+//       <Button onSmach={() => console.log("Uploading!")}>Upload Image</Button>
+//     </div>
+//   );
+// }
+
+// ! preventDefault()
+
+export default function Signup() {
   return (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        onSmach();
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
       }}
     >
-      {children}
-    </button>
-  );
-}
-
-export default function Toolbar() {
-  return (
-    <div
-      className="Toolbar"
-      onClick={() => {
-        console.log("You clicked on the toolbar!");
-      }}
-    >
-      <Button onSmach={() => console.log("Playing!")}>Play Movie</Button>
-      <Button onSmach={() => console.log("Uploading!")}>Upload Image</Button>
-    </div>
+      <input />
+      <button>Send</button>
+    </form>
   );
 }
