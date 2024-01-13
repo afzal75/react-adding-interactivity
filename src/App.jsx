@@ -1,22 +1,69 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
-export default function App() {
+// /* eslint-disable react/prop-types */
+// export default function App() {
+//   return (
+//     <Toolbar
+//       onPlayMovie={() => console.log("Playing!")}
+//       onUploadImage={() => console.log("Uploading!")}
+//     />
+//   );
+// }
+
+// function Toolbar({ onPlayMovie, onUploadImage }) {
+//   return (
+//     <div>
+//       <Button onSmach={onPlayMovie}>Play Movie</Button>
+//       <Button onSmach={onUploadImage}>Upload Image</Button>
+//     </div>
+//   );
+// }
+
+// function Button({ onSmach, children }) {
+//   return <button onSmach={onSmach}>{children}</button>;
+// }
+
+// ! event Propagetion
+
+// export default function Toolbar() {
+//   return (
+//     <div
+//       className="Toolbar"
+//       onSmach={() => {
+//         console.log("You clicked on the toolbar!");
+//       }}
+//     >
+//       <button onSmach={() => console.log("Playing!")}>Play Movie</button>
+//       <button onSmach={() => console.log("Uploading!")}>Upload Image</button>
+//     </div>
+//   );
+// }
+
+// ?
+
+function Button({ onSmach, children }) {
   return (
-    <Toolbar
-      onPlayMovie={() => alert("Playing!")}
-      onUploadImage={() => alert("Uploading!")}
-    />
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onSmach();
+      }}
+    >
+      {children}
+    </button>
   );
 }
 
-function Toolbar({ onPlayMovie, onUploadImage }) {
+export default function Toolbar() {
   return (
-    <div>
-      <Button onClick={onPlayMovie}>Play Movie</Button>
-      <Button onClick={onUploadImage}>Upload Image</Button>
+    <div
+      className="Toolbar"
+      onClick={() => {
+        console.log("You clicked on the toolbar!");
+      }}
+    >
+      <Button onSmach={() => console.log("Playing!")}>Play Movie</Button>
+      <Button onSmach={() => console.log("Uploading!")}>Upload Image</Button>
     </div>
   );
-}
-
-function Button({ onClick, children }) {
-  return <button onClick={onClick}>{children}</button>;
 }
