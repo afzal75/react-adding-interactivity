@@ -165,7 +165,7 @@ const initialArtis = [
   { id: 2, name: "Louise Nevelson" },
 ];
 
-export default function Apps() {
+export function InsetArray() {
   const [name, setName] = useState("");
   const [artists, setArtists] = useState(initialArtis);
 
@@ -191,6 +191,35 @@ export default function Apps() {
       <ul>
         {artists.map((artist) => (
           <li key={artist.id}>{artist.name}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+// ! =============Making other changes to an array================
+
+const initialList = [
+  { id: 0, title: "Big Bellies" },
+  { id: 1, title: "Lunar Landscape" },
+  { id: 2, title: "Terracotta Army" },
+];
+
+export default function Apps() {
+  const [list, setList] = useState(initialList);
+
+  function handleClick() {
+    const nextList = [...list];
+    nextList.reverse();
+    setList(nextList);
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>Reverse</button>
+      <ul>
+        {list.map((artwork) => (
+          <li key={artwork.id}>{artwork.title}</li>
         ))}
       </ul>
     </>
