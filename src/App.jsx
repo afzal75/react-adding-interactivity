@@ -203,3 +203,246 @@
 //     </div>
 //   );
 // }
+
+// ! State Object
+
+// import { useState } from "react";
+
+// export default function Form() {
+//   const [person, setPerson] = useState({
+//     firstName: "Barbara",
+//     lastName: "Hepworth",
+//     email: "bhepworth@sculpture.com",
+//   });
+
+//   function handleFirstNameChange(e) {
+//     setPerson({
+//       ...person, // ! spreding person
+//       firstName: e.target.value, // New first name from the input
+//       // lastName: person.lastName,
+//       // email: person.email,
+//     });
+//   }
+
+//   function handleLastNameChange(e) {
+//     setPerson({
+//       ...person, // ! spreding person
+//       lastName: e.target.value, // New first name from the input
+//     });
+//   }
+
+//   function handleEmailChange(e) {
+//     setPerson({
+//       ...person, // ! spreding person
+//       email: e.target.value, // New first name from the input
+//     });
+//   }
+
+//   return (
+//     <>
+//       <label>
+//         First name:
+//         <input value={person.firstName} onChange={handleFirstNameChange} />
+//       </label>
+//       <label>
+//         Last name:
+//         <input value={person.lastName} onChange={handleLastNameChange} />
+//       </label>
+//       <label>
+//         Email:
+//         <input value={person.email} onChange={handleEmailChange} />
+//       </label>
+//       <p>
+//         {person.firstName} {person.lastName} ({person.email})
+//       </p>
+//     </>
+//   );
+// }
+
+// ! ===============================================================
+
+// import { useState } from "react";
+
+// export default function Form() {
+//   const [person, setPerson] = useState({
+//     firstName: "Barbara",
+//     lastName: "Hepworth",
+//     email: "bhepworth@sculpture.com",
+//   });
+
+//   function handleChange(e) {
+//     setPerson({
+//       ...person,
+//       [e.target.name]: e.target.value,
+//     });
+//   }
+
+//   return (
+//     <>
+//       <label>
+//         First name:
+//         <input value={person.firstName} onChange={handleChange} />
+//       </label>
+//       <label>
+//         Last name:
+//         <input value={person.lastName} onChange={handleChange} />
+//       </label>
+//       <label>
+//         Email:
+//         <input value={person.email} onChange={handleChange} />
+//       </label>
+//       <p>
+//         {person.firstName} {person.lastName} ({person.email})
+//       </p>
+//     </>
+//   );
+// }
+
+// ! ===============================================================
+
+// import { useState } from "react";
+
+// export default function Form() {
+//   const [person, setPerson] = useState({
+//     name: "Niki de Saint Phalle",
+//     artwork: {
+//       title: "Blue Nana",
+//       city: "Hamburg",
+//       image: "https://i.imgur.com/Sd1AgUOm.jpg",
+//     },
+//   });
+
+//   function handleNameChange(e) {
+//     setPerson({
+//       ...person,
+//       name: e.target.value,
+//     });
+//   }
+
+//   function handleTitleChange(e) {
+//     setPerson({
+//       ...person,
+//       artwork: {
+//         ...person.artwork,
+//         title: e.target.value,
+//       },
+//     });
+//   }
+
+//   function handleCityChange(e) {
+//     setPerson({
+//       ...person,
+//       artwork: {
+//         ...person.artwork,
+//         city: e.target.value,
+//       },
+//     });
+//   }
+
+//   function handleImageChange(e) {
+//     setPerson({
+//       ...person,
+//       artwork: {
+//         ...person.artwork,
+//         image: e.target.value,
+//       },
+//     });
+//   }
+
+//   return (
+//     <>
+//       <label>
+//         Name:
+//         <input value={person.name} onChange={handleNameChange} />
+//       </label>
+//       <label>
+//         Title:
+//         <input value={person.artwork.title} onChange={handleTitleChange} />
+//       </label>
+//       <label>
+//         City:
+//         <input value={person.artwork.city} onChange={handleCityChange} />
+//       </label>
+//       <label>
+//         Image:
+//         <input value={person.artwork.image} onChange={handleImageChange} />
+//       </label>
+//       <p>
+//         <i>{person.artwork.title}</i>
+//         {" by "}
+//         {person.name}
+//         <br />
+//         (located in {person.artwork.city})
+//       </p>
+//       <img src={person.artwork.image} alt={person.artwork.title} />
+//     </>
+//   );
+// }
+
+// ! =======================Using UseImmer=======================
+
+import { useImmer } from "use-immer";
+
+export default function Form() {
+  const [person, updatePerson] = useImmer({
+    name: "Niki de Saint Phalle",
+    artwork: {
+      title: "Blue Nana",
+      city: "Hamburg",
+      image: "https://i.imgur.com/Sd1AgUOm.jpg",
+    },
+  });
+
+  function handleNameChange(e) {
+    updatePerson((draft) => {
+      draft.name = e.target.value;
+    });
+  }
+
+  function handleTitleChange(e) {
+    updatePerson((draft) => {
+      draft.artwork.title = e.target.value;
+    });
+  }
+
+  function handleCityChange(e) {
+    updatePerson((draft) => {
+      draft.artwork.city = e.target.value;
+    });
+  }
+
+  function handleImageChange(e) {
+    updatePerson((draft) => {
+      draft.artwork.image = e.target.value;
+    });
+  }
+
+  return (
+    <>
+      <label>
+        Name:
+        <input value={person.name} onChange={handleNameChange} />
+      </label>
+      <label>
+        Title:
+        <input value={person.artwork.title} onChange={handleTitleChange} />
+      </label>
+      <label>
+        City:
+        <input value={person.artwork.city} onChange={handleCityChange} />
+      </label>
+      <label>
+        Image:
+        <input value={person.artwork.image} onChange={handleImageChange} />
+      </label>
+      <p>
+        <i>{person.artwork.title}</i>
+        {" by "}
+        {person.name}
+        <br />
+        (located in {person.artwork.city})
+      </p>
+      <img src={person.artwork.image} alt={person.artwork.title} />
+    </>
+  );
+}
